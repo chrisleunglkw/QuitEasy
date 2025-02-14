@@ -33,9 +33,10 @@ df = pd.DataFrame(
         "Tel": ["2762 2045", "2762 2037", "2762 2042", "2762 2044"]
     }
 )
-
-
-st.title("退隊易 AMS Quit")
+st.set_page_config(
+    page_title="退隊易 AMS Quit",
+    page_icon="👋",
+)
 st.title("""
 退隊易
 """)
