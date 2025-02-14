@@ -34,38 +34,46 @@ df = pd.DataFrame(
     }
 )
 st.set_page_config(
-    page_title="退隊易 AMS Quit",
+    page_title="退隊易 AMS Quit Easy",
     page_icon="👋",
 )
 st.title("""
 退隊易
 """)
+st.markdown(":green[Powered by Llama-3.3-70B-Instruct-Turbo-Free AI]", 
+            help="AI自動生成退隊信")
+
+st.image("https://www.ams.gov.hk/img/page-banner/page1.png", use_container_width=True)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    name = st.text_input("Name (Optional)" , placeholder="你個名")
-    number = st.text_input("Number (Optional)", placeholder="你冧把")
-    team = st.text_input("Team (Optional)")
-    prompt = st.text_area("Extra instructions (Optional)", placeholder="有咩額外要求")
+    with st.expander("Information", expanded=True):
+        name = st.text_input("Name (Optional)" , placeholder="你個名")
+        number = st.text_input("Number (Optional)", placeholder="你冧把")
+        team = st.text_input("Team (Optional)")
+        prompt = st.text_area("Extra instructions (Optional)", placeholder="有咩額外要求")
 
     options = ["English", "中文", "廣東話"]
     langSelection = st.pills("Language", options, selection_mode="multi")
 
-    if st.button("退!", icon=":material/mood:", use_container_width=True) :
-        # If no language is selected, prompt user to select one
-        if not langSelection:
-            st.error("Please select a language")
-        else:
-            with col2:
+if st.button("退!", icon=":material/mood:", use_container_width=True) :
+    # If no language is selected, prompt user to select one
+    if not langSelection:
+        st.error("Please select a language")
+    else:
+        with col2:
+            with st.expander("AI Generated Letter", expanded=True):
                 st.write(runPrompt().choices[0].message.content)
-                st.toast('Hip!')
-                time.sleep(.5)
-                st.toast('Hip!')
-                time.sleep(.5)
-                st.toast('Hooray!', icon='🎉')
 
-    st.table(df)
+
+            st.toast('Hip!')
+            time.sleep(.5)
+            st.toast('Hip!')
+            time.sleep(.5)
+            st.toast('Hooray!', icon='🎉')
+
+st.table(df)
 
 
 
