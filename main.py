@@ -5,7 +5,7 @@ import pandas as pd
 
 def runPrompt():
     client = Together()
-    response = client.chat.cfompletions.create(
+    response = client.chat.completions.create(
     model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
     messages=[{"role": "user", "content": f"""Given that i am an Hong Kong Auxiliary Medical Service (醫療輔助隊) member, 
                help me to write a letter to resign.
